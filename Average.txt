@@ -1,0 +1,58 @@
+package my_project;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
+
+public class MyClass {
+    static Scanner userinput = new Scanner(System.in);
+    public static void main(String[] args) {
+    	
+    	//initial list
+    	String entries = promptString("Enter a list of values to average, separated by spaces.");
+    	
+    	//make it into an array first for parsing
+		String[] entriesStringArray = entries.split(" ");
+		List<Double> entriesList = new ArrayList<Double>();
+		
+		//enforces list size
+		if (entriesStringArray.length > 30) {
+			System.out.println("Error: list is too large. Please enter no more than 30 values.");
+			return;
+		}
+		
+		//parse entries
+		for (int i = 0; i < entriesStringArray.length; i++) {
+			try {
+				entriesList.add(Double.parseDouble(entriesStringArray[i]));
+			} catch (Exception e) {
+				System.out.println("Error: list is empty or contains a non-numerical value. Please try again, constructing a list of exclusively numbers.");
+				return;
+			}
+		}
+		
+		double listAverage = averageList(entriesList);
+    	
+    	//final print
+		System.out.println("");
+    	System.out.format("List average: %.2f", listAverage);
+		
+	}
+    public static double averageList(List<Double> list) {
+    	int length = list.size();
+    	int sum = 0;
+    	double average;
+    	
+    	for(int i = 0; i < length; i++) {
+    		sum += list.get(i);
+    	}
+    	
+    	average = sum / length;
+    	return average;
+    	
+    }
+    //helper function since my user input format is so consistent
+    public static String promptString(String message) {
+    	System.out.format("%s \n>>", message);
+    	return userinput.nextLine();
+    }
+}

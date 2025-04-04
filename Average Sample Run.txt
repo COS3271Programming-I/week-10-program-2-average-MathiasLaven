@@ -1,0 +1,4 @@
+Enter a list of values to average, separated by spaces. 
+>>1 32089 273.5783 1237.905320 -889432 10.828727 9 3.14159 100
+
+List average: -95078.00
